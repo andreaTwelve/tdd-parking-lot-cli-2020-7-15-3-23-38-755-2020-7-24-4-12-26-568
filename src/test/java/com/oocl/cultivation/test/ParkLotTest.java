@@ -20,4 +20,15 @@ public class ParkLotTest {
         //then
         assertNull(fetchCar);
     }
+
+    @Test
+    void should_return_no_car_when_fetch_given_no_ticket() {
+        //given
+        ParkLot parkLot = new ParkLot();
+        parkLot.park(new Car());
+        //when
+        Car fetchCar = parkLot.fetch(null);
+        //then
+        assertNull(fetchCar);
+    }
 }
