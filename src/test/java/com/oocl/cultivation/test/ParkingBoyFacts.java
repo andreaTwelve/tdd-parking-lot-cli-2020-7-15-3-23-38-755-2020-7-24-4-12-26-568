@@ -15,12 +15,24 @@ class ParkingBoyFacts {
     @Test
     void should_return_ticket_when_park_given_car() {
         //given
-        //when
-        //CarTicket carTicket =
         ParkLot parkLot = new ParkLot();
         Car car = new Car();
+        //when
         CarTicket carTicket = parkLot.park(car);
         //then
         assertNotNull(carTicket);
     }
+
+    @Test
+    void should_return_car_when_fetch_given_ticket() {
+        //given
+        Car car = new Car();
+        ParkLot parkLot = new ParkLot();
+        CarTicket carTicket = parkLot.park(car);
+        //when
+        Car fetchCar = parkLot.fetch(carTicket);
+        //then
+        assertNotNull(fetchCar);
+    }
+
 }
