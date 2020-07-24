@@ -14,11 +14,6 @@ public class ParkLot {
     }
 
     public Car fetch(CarTicket carTicket) {
-        for (Map.Entry<CarTicket, Car> entry: carTicketMap.entrySet()) {
-            if (entry.getKey().equals(carTicket)) {
-                return entry.getValue();
-            }
-        }
-        return null;
+        return carTicketMap.remove(carTicket);
     }
 }
