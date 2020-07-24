@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ParkLotTest {
@@ -60,10 +61,9 @@ public class ParkLotTest {
         }
 
         //when
-        for (int i = 0; i < carList.size(); i++) {
-            carTicketList.add(parkLot.park((Car)carList.get(i)));
+        for (Car car: carList) {
+            carTicketList.add(parkLot.park(car));
         }
-
         CarTicket carTicket = carTicketList.get(carTicketList.size() - 1);
         //then
         assertNull(carTicket);

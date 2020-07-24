@@ -17,9 +17,13 @@ public class ParkLot {
     }
 
     public CarTicket park(Car car) {
-        CarTicket carTicket = new CarTicket();
-        carTicketMap.put(carTicket, car);
-        return carTicket;
+        if (this.capacity > carTicketMap.size()) {
+            CarTicket carTicket = new CarTicket();
+            carTicketMap.put(carTicket, car);
+            return carTicket;
+        } else {
+            return null;
+        }
     }
 
     public Car fetch(CarTicket carTicket) {
