@@ -7,6 +7,15 @@ import java.util.Map;
 
 public class ParkLot {
     private Map<CarTicket, Car> carTicketMap = new HashMap<>();
+    private int capacity;
+
+    public ParkLot() {
+    }
+
+    public ParkLot(int capacity) {
+        this.capacity = capacity;
+    }
+
     public CarTicket park(Car car) {
         CarTicket carTicket = new CarTicket();
         carTicketMap.put(carTicket, car);
@@ -15,5 +24,9 @@ public class ParkLot {
 
     public Car fetch(CarTicket carTicket) {
         return carTicketMap.remove(carTicket);
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 }

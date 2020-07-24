@@ -4,6 +4,10 @@ import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkLot;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ParkLotTest {
@@ -43,5 +47,25 @@ public class ParkLotTest {
         Car fetchCar = parkLot.fetch(carTicket1);
         //then
         assertNull(fetchCar);
+    }
+
+    @Test
+    void should_return_no_ticket_when_park_given_no_capacity() {
+        //given
+        ParkLot parkLot = new ParkLot(10);
+        List<Car> carList = new ArrayList<>();
+        List<CarTicket> carTicketList = new ArrayList<>();
+        for (int i = 0; i < parkLot.getCapacity() + 1; i++) {
+            carList.add(new Car());
+        }
+
+        //when
+        for (int i = 0; i < carList.size(); i++) {
+            carTicketList.add(parkLot.park((Car)carList.get(i)));
+        }
+
+        CarTicket carTicket = carTicketList.get(carTicketList.size() - 1);
+        //then
+        assertNull(carTicket);
     }
 }
