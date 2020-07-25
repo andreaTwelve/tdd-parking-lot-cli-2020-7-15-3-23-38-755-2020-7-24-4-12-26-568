@@ -33,7 +33,7 @@ public class ParkBoyTest {
         ParkBoy parkBoy = new ParkBoy(parkLot);
         CarTicket carTicket = parkBoy.park(car);
         //when
-        Car fetchCar = parkLot.fetch(carTicket);
+        Car fetchCar = parkBoy.fetch(carTicket);
         //then
         assertNotNull(fetchCar);
     }
@@ -67,6 +67,21 @@ public class ParkBoyTest {
         parkBoy.park(car);
         //when
         String actualMessage = parkBoy.queryMessage(null);
+        //then
+        assertEquals("Unrecognized parking ticket", actualMessage);
+    }
+
+    @Test
+    void should_return_unrecognized_parking_ticket_when_query_error_message_given_used_ticket() {
+        //given
+        ParkLot parkLot = new ParkLot();
+        ParkBoy parkBoy = new ParkBoy(parkLot);
+        Car car = new Car();
+
+        CarTicket usedCarTicket = parkBoy.park(car);
+        parkBoy.fetch(usedCarTicket);
+        //when
+        String actualMessage = parkLot.queryMessage(usedCarTicket);
         //then
         assertEquals("Unrecognized parking ticket", actualMessage);
     }

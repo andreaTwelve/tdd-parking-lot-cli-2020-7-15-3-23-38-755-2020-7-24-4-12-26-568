@@ -13,6 +13,10 @@ public class ParkBoy {
         return parkLot.park(car);
     }
 
+    public Car fetch(CarTicket carTicket) {
+        return parkLot.fetch(carTicket);
+    }
+
     public String queryMessage(CarTicket carTicket) {
         return parkLot.queryMessage(carTicket);
     }
