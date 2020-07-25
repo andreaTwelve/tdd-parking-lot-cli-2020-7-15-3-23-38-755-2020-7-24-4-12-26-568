@@ -6,4 +6,8 @@ public class CarTicketSystem {
     public String checkTicket(CarTicket carTicket) {
         return null;
     }
+
+    public CarTicket addTicket(Car car) {
+        return null;
+    }
 }
