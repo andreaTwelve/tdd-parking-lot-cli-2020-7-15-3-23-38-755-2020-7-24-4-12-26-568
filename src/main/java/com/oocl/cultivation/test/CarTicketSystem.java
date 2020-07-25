@@ -9,7 +9,13 @@ import java.util.Map;
 public class CarTicketSystem {
     private Map<CarTicket, Boolean> carTicketBooleanMap = new HashMap<>();
     public String checkTicket(CarTicket carTicket) {
-        return "Unrecognized parking ticket";
+        String message;
+        if (!carTicketBooleanMap.containsKey(carTicket) || carTicketBooleanMap.get(carTicket)) {
+            message = "Unrecognized parking ticket";
+        } else {
+            message = null;
+        }
+        return message;
     }
 
     public CarTicket addTicket() {
