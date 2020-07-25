@@ -14,6 +14,6 @@ public class ParkBoy {
     }
 
     public String queryMessage(CarTicket carTicket) {
-        return null;
+        return parkLot.queryMessage(carTicket);
     }
 }
