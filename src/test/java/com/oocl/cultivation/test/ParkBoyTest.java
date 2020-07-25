@@ -65,8 +65,9 @@ public class ParkBoyTest {
         ParkBoy parkBoy = new ParkBoy(parkLot);
         Car car = new Car();
         parkBoy.park(car);
+        CarTicket carTicket = new CarTicket();
         //when
-        String actualMessage = parkBoy.queryMessage(null);
+        String actualMessage = parkBoy.queryMessage(carTicket);
         //then
         assertEquals("Unrecognized parking ticket", actualMessage);
     }
