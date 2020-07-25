@@ -1,7 +1,6 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.CarTicket;
-import com.oocl.cultivation.ParkBoy;
 import com.oocl.cultivation.ParkLot;
 import org.junit.jupiter.api.Test;
 
@@ -17,12 +16,11 @@ public class ParkLotTest {
     void should_return_no_car_when_fetch_given_wrong_ticket() {
         //given
         ParkLot parkLot = new ParkLot();
-        ParkBoy parkBoy = new ParkBoy(parkLot);
         Car car1 = new Car();
-        parkBoy.park(car1);
+        parkLot.park(car1);
         CarTicket carTicket2 = new CarTicket();
         //when
-        Car fetchCar = parkBoy.fetch(carTicket2);
+        Car fetchCar = parkLot.fetch(carTicket2);
 
         //then
         assertNull(fetchCar);
@@ -32,10 +30,9 @@ public class ParkLotTest {
     void should_return_no_car_when_fetch_given_no_ticket() {
         //given
         ParkLot parkLot = new ParkLot();
-        ParkBoy parkBoy = new ParkBoy(parkLot);
-        parkBoy.park(new Car());
+        parkLot.park(new Car());
         //when
-        Car fetchCar = parkBoy.fetch(null);
+        Car fetchCar = parkLot.fetch(null);
         //then
         assertNull(fetchCar);
     }
@@ -44,12 +41,11 @@ public class ParkLotTest {
     void should_return_no_car_when_fetch_given_used_ticket() {
         //given
         ParkLot parkLot = new ParkLot();
-        ParkBoy parkBoy = new ParkBoy(parkLot);
         Car car1 = new Car();
-        CarTicket carTicket1 = parkBoy.park(car1);
-        parkBoy.fetch(carTicket1);
+        CarTicket carTicket1 = parkLot.park(car1);
+        parkLot.fetch(carTicket1);
         //when
-        Car fetchCar = parkBoy.fetch(carTicket1);
+        Car fetchCar = parkLot.fetch(carTicket1);
         //then
         assertNull(fetchCar);
     }
@@ -58,8 +54,6 @@ public class ParkLotTest {
     void should_return_no_ticket_when_park_given_no_capacity() {
         //given
         ParkLot parkLot = new ParkLot(10);
-        ParkBoy parkBoy = new ParkBoy(parkLot);
-
         List<Car> carList = new ArrayList<>();
         List<CarTicket> carTicketList = new ArrayList<>();
         for (int i = 0; i < parkLot.getCapacity() + 1; i++) {
@@ -68,7 +62,7 @@ public class ParkLotTest {
 
         //when
         for (Car car: carList) {
-            carTicketList.add(parkBoy.park(car));
+            carTicketList.add(parkLot.park(car));
         }
         CarTicket carTicket = carTicketList.get(carTicketList.size() - 1);
         //then

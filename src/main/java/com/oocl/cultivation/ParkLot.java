@@ -35,6 +35,9 @@ public class ParkLot {
     }
 
     public String queryMessage(CarTicket carTicket) {
+//        if () {
+//
+//        }
         return "Unrecognized parking ticket";
     }
 }
