@@ -70,17 +70,6 @@ public class ParkLotTest {
     }
 
     @Test
-    void should_return_unrecognized_parking_ticket_when_query_error_message_given_no_ticket() {
-        //given
-        ParkLot parkLot = new ParkLot();
-        Car car = new Car();
-        //when
-        String actualMessage = parkLot.queryMessage(null);
-        //then
-        assertEquals("Unrecognized parking ticket", actualMessage);
-    }
-
-    @Test
     void should_return_unrecognized_parking_ticket_when_query_error_message_given_used_ticket() {
         //given
         ParkLot parkLot = new ParkLot();

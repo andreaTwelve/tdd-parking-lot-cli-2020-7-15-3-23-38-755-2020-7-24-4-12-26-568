@@ -57,4 +57,17 @@ public class ParkBoyTest {
         //then
         assertEquals(3, carTicketList.size());
     }
+
+    @Test
+    void should_return_unrecognized_parking_ticket_when_query_error_message_given_not_provide_ticket_by_boy() {
+        //given
+        ParkLot parkLot = new ParkLot();
+        ParkBoy parkBoy = new ParkBoy(parkLot);
+        Car car = new Car();
+        parkBoy.park(car);
+        //when
+        String actualMessage = parkBoy.queryMessage(null);
+        //then
+        assertEquals("Unrecognized parking ticket", actualMessage);
+    }
 }

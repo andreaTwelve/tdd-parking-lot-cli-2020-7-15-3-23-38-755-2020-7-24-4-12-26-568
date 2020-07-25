@@ -12,4 +12,8 @@ public class ParkBoy {
     public CarTicket park(Car car){
         return parkLot.park(car);
     }
+
+    public String queryMessage(CarTicket carTicket) {
+        return null;
+    }
 }
