@@ -10,9 +10,8 @@ public class CarTicketSystemTest {
     void should_get_ticket_when_add_ticket_given_car() {
         //given
         CarTicketSystem carTicketSystem = new CarTicketSystem();
-        Car car = new Car();
         //when
-        CarTicket carTicket = carTicketSystem.addTicket(car);
+        CarTicket carTicket = carTicketSystem.addTicket();
         //then
         assertNotNull(carTicket);
     }
@@ -28,9 +27,15 @@ public class CarTicketSystemTest {
         assertEquals("Unrecognized parking ticket", actualMessage);
     }
 
-
-//    void should_return_unrecognized_parking_ticket_when_query_error_message_given_used_ticket() {
-//
-//    }
+    @Test
+    void should_return_unrecognized_parking_ticket_when_check_ticket_given_used_ticket() {
+        //given
+        CarTicketSystem carTicketSystem = new CarTicketSystem();
+        CarTicket carTicket = new CarTicket();
+        //when
+        String actualMessage = carTicketSystem.checkTicket(carTicket);
+        //then
+        assertEquals("Unrecognized parking ticket", actualMessage);
+    }
 
 }
