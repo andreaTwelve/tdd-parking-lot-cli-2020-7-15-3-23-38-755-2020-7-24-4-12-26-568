@@ -10,10 +10,10 @@ public class CarTicketSystem {
     private Map<CarTicket, Boolean> carTicketBooleanMap = new HashMap<>();
     public String checkTicket(CarTicket carTicket) {
         String message;
-        if (!carTicketBooleanMap.containsKey(carTicket) || carTicketBooleanMap.get(carTicket)) {
+        if (carTicket != null && (!carTicketBooleanMap.containsKey(carTicket) || carTicketBooleanMap.get(carTicket))) {
             message = "Unrecognized parking ticket";
         } else {
-            message = null;
+            message = "please provide your parking ticket";
         }
         return message;
     }
