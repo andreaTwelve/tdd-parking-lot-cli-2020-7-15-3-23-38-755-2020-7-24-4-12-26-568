@@ -18,6 +18,10 @@ public class CarTicketSystem {
         return message;
     }
 
+    public void deleteTicket(CarTicket carTicket) {
+        carTicketBooleanMap.put(carTicket, true);
+    }
+
     public CarTicket addTicket() {
         CarTicket carTicket = new CarTicket();
         carTicketBooleanMap.put(carTicket, false);
