@@ -85,4 +85,18 @@ public class ParkBoyTest {
         //then
         assertEquals("Unrecognized parking ticket", actualMessage);
     }
+
+    @Test
+    void should_return_please_provide_your_parking_ticket_when_query_error_message_given_no_ticket() {
+        //given
+        ParkLot parkLot = new ParkLot();
+        ParkBoy parkBoy = new ParkBoy(parkLot);
+        Car car = new Car();
+        parkBoy.park(car);
+        parkBoy.fetch(null);
+        //when
+        String actualMessage = parkBoy.queryMessage(null);
+        //then
+        assertEquals("Please provide your parking ticket", actualMessage);
+    }
 }
