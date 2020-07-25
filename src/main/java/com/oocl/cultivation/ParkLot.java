@@ -33,4 +33,8 @@ public class ParkLot {
     public int getCapacity() {
         return capacity;
     }
+
+    public String queryMessage(CarTicket carTicket) {
+        return null;
+    }
 }
