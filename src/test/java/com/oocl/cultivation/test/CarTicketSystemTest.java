@@ -3,8 +3,7 @@ package com.oocl.cultivation.test;
 import com.oocl.cultivation.CarTicket;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTicketSystemTest {
     @Test
@@ -15,7 +14,7 @@ public class CarTicketSystemTest {
         //when
         CarTicket carTicket = carTicketSystem.addTicket(car);
         //then
-        assertNull(carTicket);
+        assertNotNull(carTicket);
     }
 
     @Test
