@@ -1,17 +1,16 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.CarTicket;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTicketSystemTest {
     @Test
-    void should_get_ticket_when_add_ticket_given_car() {
+    void should_get_ticket_when_generate_ticket_given_car() {
         //given
         CarTicketSystem carTicketSystem = new CarTicketSystem();
         //when
-        CarTicket carTicket = carTicketSystem.addTicket();
+        CarTicket carTicket = carTicketSystem.generateTicket();
         //then
         assertNotNull(carTicket);
     }
@@ -21,7 +20,7 @@ public class CarTicketSystemTest {
         //given
         CarTicketSystem carTicketSystem = new CarTicketSystem();
         CarTicket carTicket = new CarTicket();
-        carTicketSystem.addTicket();
+        carTicketSystem.generateTicket();
         //when
         String actualMessage = carTicketSystem.checkTicket(carTicket);
         //then
@@ -32,8 +31,8 @@ public class CarTicketSystemTest {
     void should_return_unrecognized_parking_ticket_when_check_ticket_given_used_ticket() {
         //given
         CarTicketSystem carTicketSystem = new CarTicketSystem();
-        CarTicket carTicket = carTicketSystem.addTicket();
-        carTicketSystem.deleteTicket(carTicket);
+        CarTicket carTicket = carTicketSystem.generateTicket();
+        carTicketSystem.updateTicketMessage(carTicket);
 
         //when
         String actualMessage = carTicketSystem.checkTicket(carTicket);
@@ -49,6 +48,7 @@ public class CarTicketSystemTest {
         //when
         String actualMessage = carTicketSystem.checkTicket(null);
         //then
-        assertEquals("please provide your parking ticket", actualMessage);
+        assertEquals("Please provide your parking ticket", actualMessage);
     }
+
 }

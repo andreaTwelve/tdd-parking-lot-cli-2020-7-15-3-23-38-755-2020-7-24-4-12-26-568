@@ -1,12 +1,8 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.CarTicket;
-import com.oocl.cultivation.ParkLot;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
