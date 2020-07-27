@@ -11,21 +11,14 @@ import java.util.Map;
 public class ParkLot {
     private Map<CarTicket, Car> parkingRoom = new HashMap<>();
     private int capacity;
-    private int restCapacity;
 
     public int getRestCapacity() {
         return capacity - this.parkingRoom.size();
     }
 
-    public ParkLot() {
-        //this.capacity = 10;
-    }
-
     public ParkLot(int capacity) {
         this.capacity = capacity;
-        //this.restCapacity = capacity - this.parkingRoom.size();
     }
-
 
     public Map<CarTicket, Car> getParkingRoom() {
         return parkingRoom;
@@ -51,20 +44,4 @@ public class ParkLot {
     public int getCapacity() {
         return capacity;
     }
-
-    public String isContainsCapacity() {
-        String message;
-        if (parkingRoom.size() == this.capacity) {
-            message =  "Not enough position";
-        } else {
-            message = null;
-        }
-        return message;
-    }
-
-//    public String checkTicket(CarTicket carTicket) {
-//        if (!parkingRoom.containsKey(carTicket)) {
-//            return "Unrecognized parking ticket.";
-//        }
-//    }
 }

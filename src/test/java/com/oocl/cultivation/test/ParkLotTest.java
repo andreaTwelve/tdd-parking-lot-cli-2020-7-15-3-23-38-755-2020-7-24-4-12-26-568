@@ -80,22 +80,4 @@ public class ParkLotTest {
         assertEquals("Not enough position.", errorMessageException.getMessage());
     }
 
-    @Test
-    void should_return_not_enough_position_when_is_contains_position_given_no_capacity() throws Exception {
-        //given
-        //CarTicketSystem carTicketSystem = new CarTicketSystem();
-        ParkLot parkLot = new ParkLot(10);
-        List<Car> carList = new ArrayList<>();
-        for (int i = 0; i < parkLot.getCapacity(); i++) {
-            carList.add(new Car());
-        }
-        for (Car car: carList) {
-            parkLot.park(car);
-        }
-        //when
-        String actualMessage = parkLot.isContainsCapacity();
-        //then
-        assertEquals("Not enough position", actualMessage);
-    }
-
 }
