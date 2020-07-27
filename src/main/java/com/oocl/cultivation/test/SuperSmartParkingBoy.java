@@ -3,14 +3,10 @@ package com.oocl.cultivation.test;
 import java.util.*;
 
 public class SuperSmartParkingBoy extends SmartParkingBoy {
-    Map<ParkLot, String> parkLotPositionRate = new HashMap<>();
     private List<ParkLot> parkLots;
     public SuperSmartParkingBoy(List<ParkLot> parkLots) {
         super(parkLots);
         this.parkLots = parkLots;
-        for (ParkLot parkLot: parkLots) {
-            parkLotPositionRate.put(parkLot, "1");
-        }
     }
 
     @Override
