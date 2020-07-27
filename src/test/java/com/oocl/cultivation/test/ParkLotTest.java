@@ -40,7 +40,7 @@ public class ParkLotTest {
     }
 
     @Test
-    void should_return_no_ticket_when_park_given_no_capacity() throws Exception {
+    void should_return_no_ticket_when_park_11_cars_given_10_capacity() throws Exception {
         //given
         ParkLot parkLot = new ParkLot(10);
         List<Car> carList = new ArrayList<>();
