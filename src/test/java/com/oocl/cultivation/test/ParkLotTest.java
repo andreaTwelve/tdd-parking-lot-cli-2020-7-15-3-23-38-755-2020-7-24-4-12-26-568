@@ -51,13 +51,33 @@ public class ParkLotTest {
         }
 
         //when
-        for (Car car: carList) {
-            CarTicket carTicket = parkLot.park(car);
-            carTicketList.add(carTicket);
-        }
-        CarTicket carTicket = carTicketList.get(carTicketList.size() - 1);
+        ErrorMessageException errorMessageException = assertThrows(ErrorMessageException.class, () -> {
+            for (Car car: carList) {
+                CarTicket carTicket = parkLot.park(car);
+                carTicketList.add(carTicket);
+            }
+        });
+
+        //CarTicket carTicket = carTicketList.get(carTicketList.size() - 1);
         //then
-        assertNull(carTicket);
+        //assertNull(carTicket);
+        assertEquals("Not enough position.", errorMessageException.getMessage());
+    }
+
+    @Test
+        // TODO: 2020/7/27  
+    void should_return_not_enough_position_when_park_given_no_capacity() throws Exception {
+        //given
+        ParkLot parkLot = new ParkLot(1);
+        Car car1 = new Car();
+        Car car2 = new Car();
+        parkLot.park(car1);
+        //when
+        ErrorMessageException errorMessageException = assertThrows(ErrorMessageException.class, () -> {
+            parkLot.park(car2);
+        });
+        //then
+        assertEquals("Not enough position.", errorMessageException.getMessage());
     }
 
     @Test

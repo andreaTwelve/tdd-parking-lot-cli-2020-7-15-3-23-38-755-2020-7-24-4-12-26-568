@@ -64,7 +64,7 @@ public class ParkBoyTest {
     //// TODO: 7/27/2020  
     void should_return_no_car_when_fetch_given_no_ticket_by_customer() throws Exception {
         //given
-        ParkLot parkLot = new ParkLot();
+        ParkLot parkLot = new ParkLot(1);
         ParkBoy parkBoy = new ParkBoy(parkLot);
         parkBoy.park(new Car());
         //when
@@ -73,21 +73,6 @@ public class ParkBoyTest {
         });
         //then
         assertEquals("Please provide your parking ticket.", errorMessageException.getMessage());
-    }
-
-    @Test
-    //// TODO: 7/27/2020  
-    void should_return_not_enough_position_when_park_given_no_capacity() throws Exception {
-        //given
-        ParkLot parkLot = new ParkLot(1);
-        ParkBoy parkBoy = new ParkBoy(parkLot);
-        parkBoy.park(new Car());
-        //when
-        ErrorMessageException errorMessageException = assertThrows(ErrorMessageException.class, () -> {
-            parkBoy.park(new Car());
-        });
-        //then
-        assertEquals("Not enough position.", errorMessageException.getMessage());
     }
 
     @Test
