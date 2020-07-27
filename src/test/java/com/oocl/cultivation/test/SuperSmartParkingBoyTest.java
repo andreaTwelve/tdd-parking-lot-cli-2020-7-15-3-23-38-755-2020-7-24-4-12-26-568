@@ -14,7 +14,6 @@ public class SuperSmartParkingBoyTest {
     @Test
     void should_return_message_when_park_3_cars_given_lot1_is_2_and_lot2_is_4() throws Exception {
         //given
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
         Car car1 = new Car();
         Car car2 = new Car();
         Car car3 = new Car();
@@ -39,7 +38,6 @@ public class SuperSmartParkingBoyTest {
     @Test
     void should_return_message_when_park_3_cars_given_lot1_is_1_and_lot2_is_2() throws Exception {
         //given
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
         Car car1 = new Car();
         Car car2 = new Car();
         Car car3 = new Car();

@@ -58,9 +58,7 @@ public class ParkLotTest {
             }
         });
 
-        //CarTicket carTicket = carTicketList.get(carTicketList.size() - 1);
         //then
-        //assertNull(carTicket);
         assertEquals("Not enough position.", errorMessageException.getMessage());
     }
 

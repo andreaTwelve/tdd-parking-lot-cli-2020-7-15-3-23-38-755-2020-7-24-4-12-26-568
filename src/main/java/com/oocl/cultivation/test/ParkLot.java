@@ -1,9 +1,6 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.exception.ErrorMessageException;
-import com.oocl.cultivation.test.Car;
-import com.oocl.cultivation.test.CarTicket;
-import com.oocl.cultivation.test.CarTicketSystem;
 
 import java.util.HashMap;
 import java.util.Map;
