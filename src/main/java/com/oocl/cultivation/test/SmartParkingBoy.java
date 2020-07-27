@@ -24,17 +24,6 @@ public class SmartParkingBoy extends ParkBoy {
         return parkLot.park(car);
     }
 
-    public String getMaxRestCapacity(Map<ParkLot, String> parkLotRestCapacity) {
-        if (parkLotRestCapacity == null) {
-            return null;
-        }
-        int length = parkLotRestCapacity.size();
-        Collection<String> c = parkLotRestCapacity.values();
-        Object[] obj = c.toArray();
-        Arrays.sort(obj);
-        return (String) (obj[length - 1]);
-    }
-
 
     @Override
     public String isContainsCapacity() {
