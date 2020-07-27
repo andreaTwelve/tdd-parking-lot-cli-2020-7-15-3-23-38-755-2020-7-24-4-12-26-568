@@ -75,7 +75,7 @@ public class ParkBoyTest {
     }
 
     @Test
-    void should_return_message_when_park_given_parking_two_cars_lot1_is_1_and_parking_lot2_is_2() throws Exception {
+    void should_return_capacity_when_park_given_parking_two_cars_lot1_is_1_and_parking_lot2_is_2() throws Exception {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
@@ -95,26 +95,4 @@ public class ParkBoyTest {
         assertEquals(0, parkLot1.getRestCapacity());
         assertEquals(1, parkLot2.getRestCapacity());
     }
-
-//    @Test
-//    void should_return_message_when_park_given_parking_two_cars_lot1_is_2_and_parking_lot2_is_1() {
-//        //given
-//        CarTicketSystem carTicketSystem = new CarTicketSystem();
-//        Car car1 = new Car();
-//        Car car2 = new Car();
-//        ParkLot parkLot1 = new ParkLot(carTicketSystem, 2);
-//        ParkLot parkLot2 = new ParkLot(carTicketSystem, 1);
-//        List<ParkLot> parkLots = new ArrayList<>();
-//        parkLots.add(parkLot1);
-//        parkLots.add(parkLot2);
-//        ParkBoy parkBoy = new ParkBoy(parkLots);
-//
-//        //when
-//        String message1 = (String)(parkBoy.park(car1));
-//        String message2 = (String)(parkBoy.park(car2));
-//
-//        //then
-//        assertEquals("the car is parked in the parkingLot 1 and has 1 rest capacity", message1);
-//        assertEquals("the car is parked in the parkingLot 1 and has 0 rest capacity", message2);
-//    }
 }
