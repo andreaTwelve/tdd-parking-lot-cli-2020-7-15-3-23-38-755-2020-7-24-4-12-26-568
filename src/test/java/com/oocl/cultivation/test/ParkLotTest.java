@@ -32,7 +32,6 @@ public class ParkLotTest {
         CarTicket carTicket1 = parkLot.park(car1);
         parkLot.fetch(carTicket1);
         //when
-        //Car fetchCar = parkLot.fetch(carTicket1);
         ErrorMessageException errorMessageException = assertThrows(ErrorMessageException.class, () -> {
             parkLot.fetch(carTicket1);
         });
@@ -45,7 +44,7 @@ public class ParkLotTest {
         //given
         ParkLot parkLot = new ParkLot(10);
         List<Car> carList = new ArrayList<>();
-        List<CarTicket> carTicketList = new ArrayList<>();
+        List<CarTicket> carTickets = new ArrayList<>();
         for (int i = 0; i < parkLot.getCapacity() + 1; i++) {
             carList.add(new Car());
         }
@@ -54,7 +53,7 @@ public class ParkLotTest {
         ErrorMessageException errorMessageException = assertThrows(ErrorMessageException.class, () -> {
             for (Car car: carList) {
                 CarTicket carTicket = parkLot.park(car);
-                carTicketList.add(carTicket);
+                carTickets.add(carTicket);
             }
         });
 
