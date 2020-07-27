@@ -27,10 +27,6 @@ public class SuperSmartParkingBoy extends SmartParkingBoy {
         return parkLot.park(car);
     }
 
-    @Override
-    public String getMaxRestCapacity(Map<ParkLot, String> parkLotRestCapacity) {
-        return super.getMaxRestCapacity(parkLotRestCapacity);
-    }
 
 
 }
