@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParkLotTest {
     @Test
     //todo
-    void should_return_no_car_when_fetch_given_provide_no_ticket_by_boy() throws Exception {
+    void should_return_unrecognized_parking_ticket_when_fetch_given_provide_no_ticket_by_boy() throws Exception {
         //given
         ParkLot parkLot = new ParkLot(1);
         parkLot.park(new Car());
@@ -40,7 +40,7 @@ public class ParkLotTest {
     }
 
     @Test
-    void should_return_no_ticket_when_park_11_cars_given_10_capacity() throws Exception {
+    void should_return_not_enough_position_when_park_11_cars_given_10_capacity() throws Exception {
         //given
         ParkLot parkLot = new ParkLot(10);
         List<Car> carList = new ArrayList<>();
