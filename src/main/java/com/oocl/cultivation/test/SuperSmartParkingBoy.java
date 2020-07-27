@@ -15,28 +15,16 @@ public class SuperSmartParkingBoy extends SmartParkingBoy {
 
     @Override
     public CarTicket park(Car car) throws Exception {
-        Object isParkSuccess = null;
-        for (int i = 0; i< parkLots.size(); i++) {
-            ParkLot parkLot = parkLots.get(i);
-            int restCapacity = parkLot.getCapacity() - parkLot.getParkingRoom().size();
-            double positionRate = (double)restCapacity / (double)parkLot.getCapacity();
-            if (parkLots.size() == 1) {
-                isParkSuccess = parkLot.park(car);
-                break;
-            }
-            if (restCapacity == 0 && i == parkLots.size() - 1) {
-                isParkSuccess = parkLot.isContainsCapacity();
-                break;
-            }
-            if (restCapacity > 0 && positionRate == Double.parseDouble(getMaxRestCapacity(parkLotPositionRate))) {
-                parkLot.park(car);
-                parkLotPositionRate.put(parkLot, String.valueOf((double)(restCapacity - 1) / (double)parkLot.getCapacity()));
-                int gcd = gcd(restCapacity - 1, parkLot.getCapacity());
-                isParkSuccess = String.format("the car is parked in the parkingLot %d and position rate is %d/%d", i + 1, (restCapacity - 1) / gcd, parkLot.getCapacity() / gcd);
-                break;
-            }
+        List<Double> restCapacity = new ArrayList<>();
+        for (ParkLot parkLot: parkLots) {
+            restCapacity.add((double)parkLot.getRestCapacity() / (double)parkLot.getCapacity());
         }
-        return null;
+        Object[] obj = restCapacity.toArray();
+        Arrays.sort(obj);
+        double maxPositionRate = (double)obj[restCapacity.size() - 1];
+        ParkLot parkLot = parkLots.stream().filter(parkLot1 ->
+                maxPositionRate == ((double)parkLot1.getRestCapacity() / (double)parkLot1.getCapacity())).findFirst().get();
+        return parkLot.park(car);
     }
 
     @Override
