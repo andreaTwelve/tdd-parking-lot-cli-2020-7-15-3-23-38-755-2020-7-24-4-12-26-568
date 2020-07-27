@@ -24,7 +24,7 @@ public class ParkBoy {
     }
 
     public Car fetch(CarTicket carTicket) throws ErrorMessageException {
-        if (parkLot.getParkingRoom().containsKey(carTicket)) {
+        if (parkLot != null && parkLot.getParkingRoom().containsKey(carTicket)) {
             return parkLot.fetch(carTicket);
         } else {
             throw new ErrorMessageException("Please provide your parking ticket.");
