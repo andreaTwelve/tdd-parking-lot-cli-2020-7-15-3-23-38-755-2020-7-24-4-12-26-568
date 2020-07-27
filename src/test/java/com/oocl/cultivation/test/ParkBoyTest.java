@@ -17,7 +17,7 @@ public class ParkBoyTest {
         ParkBoy parkBoy = new ParkBoy(parkLot);
         Car car = new Car();
         //when
-        CarTicket carTicket = (CarTicket)parkBoy.park(car);
+        CarTicket carTicket = parkBoy.park(car);
         //then
         assertNotNull(carTicket);
     }
@@ -30,7 +30,7 @@ public class ParkBoyTest {
         Car car = new Car();
         ParkLot parkLot = new ParkLot(1);
         ParkBoy parkBoy = new ParkBoy(parkLot);
-        CarTicket carTicket = (CarTicket)(parkBoy.park(car));
+        CarTicket carTicket = parkBoy.park(car);
         //when
         Car fetchCar = parkBoy.fetch(carTicket);
         //then
@@ -51,7 +51,7 @@ public class ParkBoyTest {
         //when
         List<CarTicket> carTicketList = new ArrayList<>();
         for (Car car: cars) {
-            CarTicket carTicket = (CarTicket)(parkBoy.park(car));
+            CarTicket carTicket = parkBoy.park(car);
             carTicketList.add(carTicket);
         }
 
