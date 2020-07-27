@@ -14,7 +14,7 @@ public class SuperSmartParkingBoy extends SmartParkingBoy {
     }
 
     @Override
-    public Object park(Car car) {
+    public CarTicket park(Car car) throws Exception {
         Object isParkSuccess = null;
         for (int i = 0; i< parkLots.size(); i++) {
             ParkLot parkLot = parkLots.get(i);
@@ -36,7 +36,7 @@ public class SuperSmartParkingBoy extends SmartParkingBoy {
                 break;
             }
         }
-        return isParkSuccess;
+        return null;
     }
 
     @Override

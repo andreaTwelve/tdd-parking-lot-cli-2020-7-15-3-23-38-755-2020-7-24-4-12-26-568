@@ -1,19 +1,20 @@
 package com.oocl.cultivation.test;
 
+import com.oocl.cultivation.exception.ErrorMessageException;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkBoyTest {
     @Test
-    void should_return_ticket_when_park_given_car() {
+    //// TODO: 7/27/2020
+    void should_return_ticket_when_park_given_car() throws Exception {
         //given
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
-        ParkLot parkLot = new ParkLot(carTicketSystem,1);
+        ParkLot parkLot = new ParkLot(1);
         ParkBoy parkBoy = new ParkBoy(parkLot);
         Car car = new Car();
         //when
@@ -22,29 +23,30 @@ public class ParkBoyTest {
         assertNotNull(carTicket);
     }
 
+
     @Test
-    void should_return_car_when_fetch_given_ticket() {
+    //// TODO: 7/27/2020
+    void should_return_car_when_fetch_given_ticket() throws Exception {
         //given
         Car car = new Car();
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
-        ParkLot parkLot = new ParkLot(carTicketSystem,1);
+        ParkLot parkLot = new ParkLot(1);
         ParkBoy parkBoy = new ParkBoy(parkLot);
         CarTicket carTicket = (CarTicket)(parkBoy.park(car));
         //when
         Car fetchCar = parkBoy.fetch(carTicket);
         //then
         assertNotNull(fetchCar);
+        assertEquals(car, fetchCar);
     }
 
     @Test
-    void should_return_ticket_when_park_given_more_car() {
+    void should_return_ticket_when_park_given_more_car() throws Exception {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
         Car car3 = new Car();
         Car [] cars = new Car[] {car1, car2, car3};
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
-        ParkLot parkLot = new ParkLot(carTicketSystem,3);
+        ParkLot parkLot = new ParkLot(3);
         ParkBoy parkBoy = new ParkBoy(parkLot);
 
         //when
@@ -59,92 +61,76 @@ public class ParkBoyTest {
     }
 
     @Test
-    void should_return_unrecognized_parking_ticket_when_check_ticket_given_not_provide_ticket_by_boy() {
+    //// TODO: 7/27/2020  
+    void should_return_no_car_when_fetch_given_no_ticket_by_customer() throws Exception {
         //given
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
-        ParkLot parkLot = new ParkLot(carTicketSystem, 10);
+        ParkLot parkLot = new ParkLot();
         ParkBoy parkBoy = new ParkBoy(parkLot);
-        Car car = new Car();
-        parkBoy.park(car);
-        CarTicket carTicket = new CarTicket();
+        parkBoy.park(new Car());
         //when
-        String actualMessage = parkBoy.checkTicket(carTicket);
+        ErrorMessageException errorMessageException = assertThrows(ErrorMessageException.class, () -> {
+            parkBoy.fetch(null);
+        });
         //then
-        assertEquals("Unrecognized parking ticket", actualMessage);
+        assertEquals("Please provide your parking ticket.", errorMessageException.getMessage());
     }
 
     @Test
-    void should_return_unrecognized_parking_ticket_when_check_ticket_given_used_ticket() {
+    //// TODO: 7/27/2020  
+    void should_return_not_enough_position_when_park_given_no_capacity() throws Exception {
         //given
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
-        ParkLot parkLot = new ParkLot(carTicketSystem, 10);
+        ParkLot parkLot = new ParkLot(1);
         ParkBoy parkBoy = new ParkBoy(parkLot);
-        Car car = new Car();
-
-        CarTicket usedCarTicket = (CarTicket)parkBoy.park(car);
-        parkBoy.fetch(usedCarTicket);
+        parkBoy.park(new Car());
         //when
-        String actualMessage = parkBoy.checkTicket(usedCarTicket);
+        ErrorMessageException errorMessageException = assertThrows(ErrorMessageException.class, () -> {
+            parkBoy.park(new Car());
+        });
         //then
-        assertEquals("Unrecognized parking ticket", actualMessage);
+        assertEquals("Not enough position.", errorMessageException.getMessage());
     }
 
     @Test
-    void should_return_please_provide_your_parking_ticket_when_check_ticket_given_no_ticket() {
+    void should_return_message_when_park_given_parking_two_cars_lot1_is_1_and_parking_lot2_is_2() throws Exception {
         //given
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
-        ParkLot parkLot = new ParkLot(carTicketSystem, 10);
-        ParkBoy parkBoy = new ParkBoy(parkLot);
-        Car car = new Car();
-        parkBoy.park(car);
-        parkBoy.fetch(null);
-        //when
-        String actualMessage = parkBoy.checkTicket(null);
-        //then
-        assertEquals("Please provide your parking ticket", actualMessage);
-    }
-
-    @Test
-    void should_return_message_when_park_given_parking_two_cars_lot1_is_1_and_parking_lot2_is_2() {
-        //given
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkLot parkLot1 = new ParkLot(carTicketSystem, 1);
-        ParkLot parkLot2 = new ParkLot(carTicketSystem, 2);
+        ParkLot parkLot1 = new ParkLot(1);
+        ParkLot parkLot2 = new ParkLot(2);
         List<ParkLot> parkLots = new ArrayList<>();
         parkLots.add(parkLot1);
         parkLots.add(parkLot2);
         ParkBoy parkBoy = new ParkBoy(parkLots);
 
         //when
-        String message1 = (String)(parkBoy.park(car1));
-        String message2 = (String)(parkBoy.park(car2));
+        parkBoy.park(car1);
+        parkBoy.park(car2);
+
 
         //then
-        assertEquals("the car is parked in the parkingLot 1 and has 0 rest capacity", message1);
-        assertEquals("the car is parked in the parkingLot 2 and has 1 rest capacity", message2);
+        assertEquals(0, parkLot1.getRestCapacity());
+        assertEquals(1, parkLot2.getRestCapacity());
     }
 
-    @Test
-    void should_return_message_when_park_given_parking_two_cars_lot1_is_2_and_parking_lot2_is_1() {
-        //given
-        CarTicketSystem carTicketSystem = new CarTicketSystem();
-        Car car1 = new Car();
-        Car car2 = new Car();
-        ParkLot parkLot1 = new ParkLot(carTicketSystem, 2);
-        ParkLot parkLot2 = new ParkLot(carTicketSystem, 1);
-        List<ParkLot> parkLots = new ArrayList<>();
-        parkLots.add(parkLot1);
-        parkLots.add(parkLot2);
-        ParkBoy parkBoy = new ParkBoy(parkLots);
-
-        //when
-        String message1 = (String)(parkBoy.park(car1));
-        String message2 = (String)(parkBoy.park(car2));
-
-        //then
-        assertEquals("the car is parked in the parkingLot 1 and has 1 rest capacity", message1);
-        assertEquals("the car is parked in the parkingLot 1 and has 0 rest capacity", message2);
-    }
+//    @Test
+//    void should_return_message_when_park_given_parking_two_cars_lot1_is_2_and_parking_lot2_is_1() {
+//        //given
+//        CarTicketSystem carTicketSystem = new CarTicketSystem();
+//        Car car1 = new Car();
+//        Car car2 = new Car();
+//        ParkLot parkLot1 = new ParkLot(carTicketSystem, 2);
+//        ParkLot parkLot2 = new ParkLot(carTicketSystem, 1);
+//        List<ParkLot> parkLots = new ArrayList<>();
+//        parkLots.add(parkLot1);
+//        parkLots.add(parkLot2);
+//        ParkBoy parkBoy = new ParkBoy(parkLots);
+//
+//        //when
+//        String message1 = (String)(parkBoy.park(car1));
+//        String message2 = (String)(parkBoy.park(car2));
+//
+//        //then
+//        assertEquals("the car is parked in the parkingLot 1 and has 1 rest capacity", message1);
+//        assertEquals("the car is parked in the parkingLot 1 and has 0 rest capacity", message2);
+//    }
 }

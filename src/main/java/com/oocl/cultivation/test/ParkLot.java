@@ -1,5 +1,6 @@
 package com.oocl.cultivation.test;
 
+import com.oocl.cultivation.exception.ErrorMessageException;
 import com.oocl.cultivation.test.Car;
 import com.oocl.cultivation.test.CarTicket;
 import com.oocl.cultivation.test.CarTicketSystem;
@@ -10,36 +11,41 @@ import java.util.Map;
 public class ParkLot {
     private Map<CarTicket, Car> parkingRoom = new HashMap<>();
     private int capacity;
-    private CarTicketSystem carTicketSystem;
+    private int restCapacity;
+
+    public int getRestCapacity() {
+        return capacity - this.parkingRoom.size();
+    }
 
     public ParkLot() {
         //this.capacity = 10;
     }
 
+    public ParkLot(int capacity) {
+        this.capacity = capacity;
+        //this.restCapacity = capacity - this.parkingRoom.size();
+    }
+
+
     public Map<CarTicket, Car> getParkingRoom() {
         return parkingRoom;
     }
 
-    public ParkLot(CarTicketSystem carTicketSystem, int capacity) {
-        this.carTicketSystem = carTicketSystem;
-        this.capacity = capacity;
-    }
-
-    public CarTicket park(Car car) {
+    public CarTicket park(Car car) throws ErrorMessageException {
         if (this.capacity > parkingRoom.size()) {
-            CarTicket carTicket = carTicketSystem.generateTicket();
+            CarTicket carTicket = new CarTicket();
             parkingRoom.put(carTicket, car);
             return carTicket;
         } else {
-            return null;
+            throw new ErrorMessageException("Not enough position.");
         }
     }
 
-    public Car fetch(CarTicket carTicket) {
-        if (carTicket != null && parkingRoom.containsKey(carTicket)) {
-            carTicketSystem.updateTicketMessage(carTicket);
+    public Car fetch(CarTicket carTicket) throws ErrorMessageException {
+        if (parkingRoom.containsKey(carTicket)) {
+            return parkingRoom.remove(carTicket);
         }
-        return parkingRoom.remove(carTicket);
+        throw new ErrorMessageException("Unrecognized parking ticket.");
     }
 
     public int getCapacity() {
@@ -56,7 +62,9 @@ public class ParkLot {
         return message;
     }
 
-    public String checkTicket(CarTicket carTicket) {
-        return carTicketSystem.checkTicket(carTicket);
-    }
+//    public String checkTicket(CarTicket carTicket) {
+//        if (!parkingRoom.containsKey(carTicket)) {
+//            return "Unrecognized parking ticket.";
+//        }
+//    }
 }

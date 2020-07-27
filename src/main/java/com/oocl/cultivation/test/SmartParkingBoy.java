@@ -14,26 +14,8 @@ public class SmartParkingBoy extends ParkBoy {
         }
     }
 
-    public Object park(Car car) {
-        Object isParkSuccess = null;
-        for (int i = 0; i< parkLots.size(); i++) {
-            ParkLot parkLot = parkLots.get(i);
-            int restCapacity = parkLot.getCapacity() - parkLot.getParkingRoom().size();
-            if (parkLots.size() == 1) {
-                isParkSuccess = parkLot.park(car);
-            }
-            if (restCapacity == 0 && i == parkLots.size() - 1) {
-                isParkSuccess = isContainsCapacity();
-                break;
-            }
-            if (restCapacity == Integer.parseInt(getMaxRestCapacity(parkLotRestCapacity))) {
-                parkLot.park(car);
-                parkLotRestCapacity.put(parkLot, String.valueOf(restCapacity - 1));
-                isParkSuccess = String.format("the car is parked in the parkingLot %d and has %d rest capacity", i + 1, restCapacity - 1);
-                break;
-            }
-        }
-        return isParkSuccess;
+    public CarTicket park(Car car) throws Exception {
+        return null;
     }
 
     public String getMaxRestCapacity(Map<ParkLot, String> parkLotRestCapacity) {
@@ -47,10 +29,6 @@ public class SmartParkingBoy extends ParkBoy {
         return (String) (obj[length - 1]);
     }
 
-    @Override
-    public String checkTicket(CarTicket carTicket) {
-        return super.checkTicket(carTicket);
-    }
 
     @Override
     public String isContainsCapacity() {
