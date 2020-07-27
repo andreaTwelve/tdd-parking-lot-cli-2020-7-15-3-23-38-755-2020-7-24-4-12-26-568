@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public class ParkBoy {
     private ParkLot parkLot;
-    //private Map<ParkLot, Integer> parkLotMessage = new HashMap<>();
     private List<ParkLot> parkLots = new ArrayList<>();
 
     public ParkBoy(ParkLot parkLot) {
@@ -31,13 +30,5 @@ public class ParkBoy {
         } else {
             throw new ErrorMessageException("Please provide your parking ticket.");
         }
-    }
-
-//    public String checkTicket(CarTicket carTicket) {
-//        return parkLot.checkTicket(carTicket);
-//    }
-
-    public String isContainsCapacity() {
-        return parkLot.isContainsCapacity();
     }
 }
