@@ -22,7 +22,4 @@ public class SuperSmartParkingBoy extends SmartParkingBoy {
                 maxPositionRate == ((double)parkLot1.getRestCapacity() / (double)parkLot1.getCapacity())).findFirst().get();
         return parkLot.park(car);
     }
-
-
-
 }
