@@ -4,6 +4,7 @@ import com.oocl.cultivation.exception.ErrorMessageException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SmartParkingBoy extends ParkBoy {
@@ -15,12 +16,17 @@ public class SmartParkingBoy extends ParkBoy {
 
     //// TODO: 7/28/2020 nullpointer 
     public CarTicket park(Car car) throws Exception {
-        List<Integer> restCapacity = new ArrayList<>();
-        for (ParkLot parkLot: parkLots) {
-            restCapacity.add(parkLot.getRestCapacity());
+//        List<Integer> restCapacity = new ArrayList<>();
+//        for (ParkLot parkLot: parkLots) {
+//            restCapacity.add(parkLot.getRestCapacity());
+//        }
+//        int maxRestCapacity = Collections.max(restCapacity);
+//        ParkLot parkLot = parkLots.stream().filter(parkLot1 -> maxRestCapacity == parkLot1.getRestCapacity()).findFirst().get();
+//        return parkLot.park(car);
+        ParkLot parkLot = parkLots.stream().max(Comparator.comparingDouble(ParkLot::getRestCapacity)).orElse(null);
+        if (parkLot == null) {
+            return null;
         }
-        int maxRestCapacity = Collections.max(restCapacity);
-        ParkLot parkLot = parkLots.stream().filter(parkLot1 -> maxRestCapacity == parkLot1.getRestCapacity()).findFirst().get();
         return parkLot.park(car);
     }
 
