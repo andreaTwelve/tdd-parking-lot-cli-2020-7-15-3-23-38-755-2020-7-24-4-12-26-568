@@ -1,7 +1,5 @@
 package com.oocl.cultivation.test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,7 +10,7 @@ public class SuperSmartParkingBoy extends SmartParkingBoy {
         this.parkLots = parkLots;
     }
 
-    //// TODO: 7/28/2020 ..
+    //// TODO: 7/28/2020 refactor
     @Override
     public CarTicket park(Car car) throws Exception {
         ParkLot parkLot = parkLots.stream().max(Comparator.comparingDouble(ParkLot::getRestCapacity)).orElse(null);
