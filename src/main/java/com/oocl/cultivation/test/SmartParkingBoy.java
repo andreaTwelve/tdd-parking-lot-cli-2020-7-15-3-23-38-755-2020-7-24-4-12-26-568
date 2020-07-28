@@ -2,16 +2,18 @@ package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.exception.ErrorMessageException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class SmartParkingBoy extends ParkBoy {
     private List<ParkLot> parkLots;
 
     public SmartParkingBoy(List<ParkLot> parkLots) {
-        super(parkLots);
         this.parkLots = parkLots;
     }
 
+    //// TODO: 7/28/2020 nullpointer 
     public CarTicket park(Car car) throws Exception {
         List<Integer> restCapacity = new ArrayList<>();
         for (ParkLot parkLot: parkLots) {
