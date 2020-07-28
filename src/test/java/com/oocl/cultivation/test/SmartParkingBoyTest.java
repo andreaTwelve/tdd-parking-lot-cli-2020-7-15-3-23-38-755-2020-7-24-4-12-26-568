@@ -24,6 +24,21 @@ public class SmartParkingBoyTest {
     }
 
     @Test
+    void should_return_car_when_fetch_given_ticket() throws Exception {
+        //given
+        Car car = new Car();
+        ParkLot parkLot = new ParkLot(1);
+        List<ParkLot> parkLots = new ArrayList<>();
+        parkLots.add(parkLot);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkLots);
+        CarTicket carTicket = smartParkingBoy.park(car);
+        //when
+        Car fetchCar = smartParkingBoy.fetch(carTicket);
+        //then
+        assertEquals(car, fetchCar);
+    }
+
+    @Test
     void should_return_message_when_park_given_parking_two_cars_lot1_is_1_and_parking_lot2_is_2() throws Exception {
         //given
         Car car1 = new Car();
