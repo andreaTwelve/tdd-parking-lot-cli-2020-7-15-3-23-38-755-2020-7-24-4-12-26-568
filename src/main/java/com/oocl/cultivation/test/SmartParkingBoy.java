@@ -14,15 +14,8 @@ public class SmartParkingBoy extends ParkBoy {
         this.parkLots = parkLots;
     }
 
-    //// TODO: 7/28/2020 nullpointer 
+    //// TODO: 7/28/2020 nullptr
     public CarTicket park(Car car) throws Exception {
-//        List<Integer> restCapacity = new ArrayList<>();
-//        for (ParkLot parkLot: parkLots) {
-//            restCapacity.add(parkLot.getRestCapacity());
-//        }
-//        int maxRestCapacity = Collections.max(restCapacity);
-//        ParkLot parkLot = parkLots.stream().filter(parkLot1 -> maxRestCapacity == parkLot1.getRestCapacity()).findFirst().get();
-//        return parkLot.park(car);
         ParkLot parkLot = parkLots.stream().max(Comparator.comparingDouble(ParkLot::getRestCapacity)).orElse(null);
         if (parkLot == null) {
             return null;
