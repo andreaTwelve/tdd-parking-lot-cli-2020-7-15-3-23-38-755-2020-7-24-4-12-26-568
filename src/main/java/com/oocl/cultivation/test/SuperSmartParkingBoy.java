@@ -13,7 +13,7 @@ public class SuperSmartParkingBoy extends SmartParkingBoy {
     //// TODO: 7/28/2020 refactor
     @Override
     public CarTicket park(Car car) throws Exception {
-        ParkLot parkLot = parkLots.stream().max(Comparator.comparingDouble(ParkLot::getRestCapacity)).orElse(null);
+        ParkLot parkLot = parkLots.stream().max(Comparator.comparingDouble(ParkLot::getMaxPositionRate)).orElse(null);
         if (parkLot == null) {
             return null;
         }

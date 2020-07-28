@@ -41,4 +41,8 @@ public class ParkLot {
     public int getCapacity() {
         return capacity;
     }
+
+    public double getMaxPositionRate() {
+        return (double)getRestCapacity() / (double)getCapacity();
+    }
 }
