@@ -32,7 +32,7 @@ public class ParkBoy {
         if (parkLot != null && parkLot.getParkingRoom().containsKey(carTicket)) {
             return parkLot.fetch(carTicket);
         } else {
-            throw new ErrorMessageException("Please provide your parking ticket.");
+            throw new ErrorMessageException(ErrorMessage.PLEASE_PROVIDE_YOUR_PARKING_TICKET);
         }
     }
 }

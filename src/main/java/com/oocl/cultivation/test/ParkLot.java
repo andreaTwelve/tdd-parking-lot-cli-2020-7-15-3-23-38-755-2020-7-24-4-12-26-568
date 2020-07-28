@@ -17,7 +17,7 @@ public class ParkLot {
         this.capacity = capacity;
     }
 
-    public Map<CarTicket, Car> getParkingRoom() {
+    Map<CarTicket, Car> getParkingRoom() {
         return parkingRoom;
     }
 
@@ -27,7 +27,7 @@ public class ParkLot {
             parkingRoom.put(carTicket, car);
             return carTicket;
         } else {
-            throw new ErrorMessageException("Not enough position.");
+            throw new ErrorMessageException(ErrorMessage.NOT_ENOUGH_POSITION);
         }
     }
 
@@ -35,14 +35,14 @@ public class ParkLot {
         if (parkingRoom.containsKey(carTicket)) {
             return parkingRoom.remove(carTicket);
         }
-        throw new ErrorMessageException("Unrecognized parking ticket.");
+        throw new ErrorMessageException(ErrorMessage.UNRECOGNIZED_PARKING_TICKET);
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public double getMaxPositionRate() {
+    double getMaxPositionRate() {
         return (double)getRestCapacity() / (double)getCapacity();
     }
 }
